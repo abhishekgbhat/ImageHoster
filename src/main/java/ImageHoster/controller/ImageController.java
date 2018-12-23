@@ -165,6 +165,7 @@ public class ImageController {
             model.addAttribute("tags", image.getTags());
             return "images/image";
         } else {
+            commentService.deleteRelatedComment(imageId);
             imageService.deleteImage(imageId);
             return "redirect:/images";
         }

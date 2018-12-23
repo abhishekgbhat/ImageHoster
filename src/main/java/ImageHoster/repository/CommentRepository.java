@@ -61,4 +61,21 @@ public class CommentRepository {
         List<Comment> comments = typedQuery.getResultList();
         return comments;
     }
+
+    public void deleteCommentForImage(Integer imageId) {
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction transaction = em.getTransaction();
+
+        try {
+            transaction.begin();
+            String typedQuery = "delete from Comment c where c.image.id =:imageId";
+            Query query = em.createQuery(typedQuery);
+            query.setParameter("imageId", imageId);
+            query.executeUpdate();
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+
+    }
 }

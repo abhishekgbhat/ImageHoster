@@ -24,4 +24,8 @@ public class CommentService {
     public List<Comment> getComments(Integer id) {
         return commentRepository.getAllComments(id);
     }
+
+    public void deleteRelatedComment(Integer imageId) {
+        commentRepository.deleteCommentForImage(imageId);
+    }
 }
