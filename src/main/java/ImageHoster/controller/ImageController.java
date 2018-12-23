@@ -60,6 +60,7 @@ public class ImageController {
         model.addAttribute("image", image);
         List<Comment> commentList = commentService.getComments(imageId);
         model.addAttribute("comments", commentList);
+        model.addAttribute("tags", image.getTags());
         return "images/image";
     }
 
